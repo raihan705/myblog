@@ -16,7 +16,7 @@ def post_list(request):
 
    # }
 
-    return render(request, 'blog/base.html')
+    return render(request, 'blog/post/list.html')
 
 
 def post_detail(request,year,month,day,post):
