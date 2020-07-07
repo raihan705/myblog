@@ -9,14 +9,14 @@ from blog.models import Post
 
 def post_list(request):
 
-    #posts = Post.published.all() # custom objects manager published is used here.
-    #context = {
+    posts = Post.published.all() # custom objects manager published is used here.
+    context = {
 
-        #'posts':posts
+        'posts':posts
 
-   # }
+    }
 
-    return render(request, 'blog/post/list.html')
+    return render(request, 'blog/post/list.html', context)
 
 
 def post_detail(request,year,month,day,post):
