@@ -31,9 +31,13 @@
                 
               </div>
               <div class="card-footer text-muted">
-              <p>
-                Posted on {{post.publish}} by
-                <a href="#">{{post.author}}</a>
+                <p>
+                  Posted on {{post.publish}} by
+                  <a href="#">{{post.author}}</a>
+                </p>
+                <p>
+                  <a href = "{% url 'blog:post_share' post.id %}">Share this post </a>
+                </p>
               </div>
             </div>
 
