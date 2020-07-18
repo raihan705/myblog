@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 
 {% block title %}
     <title>Share a post</title>
@@ -11,19 +14,49 @@
         <p> "{{post.title}}" was successfully sent to {{form.cleaned_data.receiver_email}}
     
     {% else %}
-        <h2>Share "{{ post.title }}" by e-mail</h2> 
-    <form method = 'POST' >
-        {% csrf_token %}
-        {% for field in form %}  
-            <div>    
-                {{ field.errors }}    
-                {{ field.label_tag }} {{ field }}  
-            </div> 
-        {% endfor %}
-        
-        <button type="submit" class="btn btn-primary">Send email </button>
-    </form>
+    <div class="row ">
+        <div class="col-md-8 ">
+            <div  class ="card mb-4 ml-10">
+                <div class="title"><h2>Share "{{ post.title }}" by e-mail</h2> </div>
+                
+                    <form method = 'POST' >
+                        {% csrf_token %}
+                    
+                    
+                    <div class="body">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter a name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sender_email">Sender email:</label>
+                            <input type="email" class="form-control" id="sender_email" name="sender_email" placeholder="Enter an Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="receiver_email">Receiver email:</label>
+                            <input type="email" class="form-control" id="receiver_email" name="receiver_email" placeholder="Enter an Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Comments:</label>
+                            <input type="textarea" class="form-control" id="comments" name="comments" placeholder="Enter Your comments" >
+                        </div>
+                        
+                            
+                        
+                            <button type="submit" class="btn btn-primary">Send email</button>
+                    </form>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     {% endif %} 
 
 {% endblock content %}
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     
