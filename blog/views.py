@@ -7,8 +7,8 @@ from django.core.mail import send_mail
 
 #from internal application import
 
-from blog.models import Post
-from blog.forms import EmailPostForm
+from blog.models import Post, Comment
+from blog.forms import EmailPostForm, CommentForm
 
 # Create your views here.
 
@@ -54,9 +54,27 @@ def post_detail(request,year,month,day,post):
     publish__month = month,
     publish__day = day
     )
+
+    # list of active comments for the post
+    comments = post.comments.filter(active=True)
+    new_comment = None
+
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data = request.POST)
+        if comment_form.is_valid():
+            # cerate comment object but don;t save it to database
+            new_comment = comment_form.save(commit= False)
+            # assign the comment to post
+            new_comment.post = post
+            # save the comments to database
+            new_comment.save()
+
+    else:
+        comment_form = CommentForm()
     context = {
 
-        'post':post
+        'post':post, 'comment_form': comment_form, 'comments': comments, 'new_comment': new_comment
 
     }
 
